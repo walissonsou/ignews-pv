@@ -1,0 +1,23 @@
+.SubscribeButton {
+    height: 4rem;
+    width: 17rem;
+    
+       
+        border-radius: 1rem;
+        background: var(--greenlive);
+        border: 0;
+        padding: 0 2rem;
+    
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        color: black;
+        font-weight: bold;
+        font-size: 1.25rem;
+        transition: 0.2s;
+
+        &:hover {
+            filter: brightness(0.8)
+        }
+}

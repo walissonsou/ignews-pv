@@ -1,0 +1,51 @@
+.headerContainer {
+ height: 5rem;
+ border-bottom: 0.2rem solid var(--blue-700);
+}
+
+.headerContent {
+
+ max-width: 1120px;
+ height: 5rem;
+
+ margin: 0 auto;
+ padding: 0 2rem; 
+ 
+ align-items: center;
+ display: flex;
+ nav {
+    display: flex;
+    margin-left: 5rem;
+    height : 5rem; 
+    justify-content: space-between;
+    a {
+        display: inline-block;
+        position: relative;
+        padding : 0 0.5rem;
+        height : 5rem;
+        line-height: 5rem;
+        color: var(--blue-300);
+        
+        transition-duration: color 0.9s;
+        & + a {
+            margin-left: 1.2rem;
+        }
+        &:hover {
+            color: var(--white);
+        }
+        &.active::after {
+            content: '';
+            height: 3px;
+            border-radius: 2px 2px 0 0;
+            width: 100%;
+            position: absolute;
+            bottom: 0.2rem;
+            left: 0;
+            background: var(--blue-300)
+        }
+    }
+  }
+  button {
+      margin-left: auto;
+  }
+}
