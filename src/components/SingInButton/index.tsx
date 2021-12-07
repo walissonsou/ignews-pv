@@ -12,6 +12,7 @@ export function SignButton() {
         <button
             type="button"
             className={styles.singInButton}
+            onClick={() => signOut()}
         >
             <FaGoogle color="#32f800" />
             Walisson Souza
@@ -26,7 +27,7 @@ export function SignButton() {
             <FaGoogle color="#eba417" />
             Acessar com o Google
             <FiX
-                onClick={() => signOut()}
+               
             />
         </button>
     );
