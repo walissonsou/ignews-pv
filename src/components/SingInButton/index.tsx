@@ -1,21 +1,20 @@
 import { FaGoogle } from 'react-icons/fa';
 
 import styles from './styles.module.scss';
-
+import { signIn, signOut, useSession } from 'next-auth/react'
 
 
 import { FiX } from 'react-icons/fi'
 
 export function SignButton() {
-    const responseGoogle = (response) => {
-        console.log(response)
-    }
-    const isUserLoggedIn = true;
+   
+    const { data: session } = useSession()
 
-    return isUserLoggedIn ? (
+    return session ? (
         <button
             type="button"
-            className={styles.singInButton} >
+            className={styles.singInButton} 
+           >
 
 
             <FaGoogle color="#32f800" />
@@ -26,9 +25,15 @@ export function SignButton() {
     ) : (
         <button
             type="button"
-            className={styles.singInButton} >
+            className={styles.singInButton}
+            onClick={() => signIn()}>
+                 
             <FaGoogle color="#eba417" />
-            Acessar com o Google </button>
+            Acessar com o Google 
+            <FiX  
+             onClick={() => signOut()}
+             />
+            </button>
 
     );
 
