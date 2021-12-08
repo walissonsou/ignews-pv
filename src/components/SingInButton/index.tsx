@@ -15,7 +15,7 @@ export function SignButton() {
             onClick={() => signOut()}
         >
             <FaGoogle color="#32f800" />
-            Walisson Souza
+            {session.user.name}
             <FiX />
         </button>
     ) : (
