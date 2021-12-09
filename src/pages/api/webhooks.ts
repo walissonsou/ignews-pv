@@ -22,50 +22,66 @@ export const config = {
     }
 }
 
-const relevantEvents = new Set(["checkout.session.completed"]);
+const relevantEvents = new Set([
+    'checkout.session.completed',
+    'customer.subscriptions.created',
+    'customer.subscriptions.updated',
+    'customer.subscriptions.deleted',
+]);
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
-        const buf = await buffer(req); // aqui tem todos os dados da requisição
-        const secret = req.headers['stripe-signature']; // verifica se os valores do ambiente bate 
+        const buf = await buffer(req); 
+        const secret = req.headers['stripe-signature'];
 
         let event: Stripe.Event;
 
         try {
             event = stripe.webhooks.constructEvent(buf, secret, process.env.STRIPE_WEBHOOK_SECRET);
-            // construir nossa variavel de eventos, os mesmos que passam no cmd, se conseguir, ok, se nao vai pro catch
         } catch (err) {
             
             return res.status(400).send(`Webhook error: ${err.message}`);
         }
-
-        // depois que criamos o nosso event, iremos fazer o que quisermos com ele
         const { type } = event;
 
         if (relevantEvents.has(type)) {
             try {
                 switch (type) {
+                    case 'customer.subscriptions.created':   
+                    case 'customer.subscriptions.updated':   
+                    case 'customer.subscriptions.deleted': 
+
+                        const subscription = event.data.object as Stripe.Subscription;
+
+                        await saveSubscription(
+                            subscription.id,
+                            subscription.customer.toString(),
+                            type === 'customer.subscriptions.created',
+                        )
+                        break;
+
+
                     case 'checkout.session.completed':
                         const checkoutSession = event.data.object as Stripe.Checkout.Session
+
                         await saveSubscription(
                             checkoutSession.subscription.toString(),
-                            checkoutSession.customer.toString()
+                            checkoutSession.customer.toString(),
                         )
                         break;
                     default:
-                        throw new Error('Unhandled event.')
+                        throw new Error('Unhandled event.');
                 }
             } catch(err) {
                 console.log(err)
                 return res.status(400).json({ error: 'Webhook handler failed' })
               
             }
-            // fazer algo
             console.log('Evento recebido', event)
         }
         return res.json({ received: true })
     } else {
-        res.setHeader('Allow', 'POST') // o método que essa requisição aceita é apenas post
-        res.status(405).end('Method not allowed') // devolvendo um erro
+        res.setHeader('Allow', 'POST') 
+        res.status(405).end('Method not allowed') 
     }
 }
