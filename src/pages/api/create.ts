@@ -8,7 +8,6 @@ import { fauna } from '../../services/fauna'
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     // NÃO É UMA ROTA BACKEND
     // SÓ ESTÁ DISPONÍVEL COM REQUISIÇÃO POST
-
     type User = {
         ref: {
             id: string;
@@ -16,9 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         data: {
             stripe_customer_id: string;
         }
-
     }
-
     if (req.method === 'POST') {
 
         // para criar o customer, utilizaremos o cookies.
@@ -34,24 +31,22 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             )
         )
         let stripeCustomerId = user.data.stripe_customer_id
-
-        if(!stripeCustomerId) {
-        const stripeCustomer = await stripe.customers.create({
-                    email: session.user.email,
-        })
-        await fauna.query(
-            q.Update(
-                q.Ref(q.Collection('usuarios'), user.ref.id), 
-                        {
-                    data: {
-                        stripe_customer_id: stripeCustomer 
+        if (!stripeCustomerId) {
+            const stripeCustomer = await stripe.customers.create({
+                email: session.user.email,
+            })
+            await fauna.query(
+                q.Update(
+                    q.Ref(q.Collection('usuarios'), user.ref.id),
+                    {
+                        data: {
+                            stripe_customer_id: stripeCustomer
+                        }
                     }
-                }
+                )
             )
-        )
-        stripeCustomerId = stripeCustomer.id
+            stripeCustomerId = stripeCustomer.id
         }
-
 
         const stripeCheckoutSession = await stripe.checkout.sessions.create({
             customer: stripeCustomerId, // É quem está comprando, não pode ser apenas um ID do cliente.   
@@ -67,7 +62,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             cancel_url: process.env.CANCEL_STRIPE_URL
 
         })
-
         return res.status(200).json({ sessionId: stripeCheckoutSession.id })
     } else {
         res.setHeader('Allow', 'POST') // o método que essa requisição aceita é apenas post
