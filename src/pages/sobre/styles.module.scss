@@ -1,0 +1,44 @@
+.contentmain {
+    max-width: 1120px;
+    margin: 0 auto;
+
+      
+}
+    .h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    color: var(--blue-300);
+    font: 700 1rem "Roboto", sans-serif;
+    font-size: 30px;
+ li {
+     margin-top: 3rem;
+    list-style: none;
+    color: var(--blue-300)
+ }
+
+}
+
+
+.tamanho{
+    height: 500px;
+    width: 500px;
+   
+}   
+.span{
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    display:flex;
+}
+
+.h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.4rem;
+    color: var(--blue-300);
+    font: 400 rem "Roboto", sans-serif;
+    font-size: 50px;
+}

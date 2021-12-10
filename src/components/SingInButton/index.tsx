@@ -1,4 +1,4 @@
-import { FaGoogle } from 'react-icons/fa';
+import { FaGithub, FaGoogle } from 'react-icons/fa';
 
 import styles from './styles.module.scss';
 import { signIn, signOut, useSession } from 'next-auth/react'
@@ -24,10 +24,9 @@ export function SignButton() {
             className={styles.singInButton}
             onClick={() => signIn()}>
 
-            <FaGoogle color="#eba417" />
-            Acessar com o Google
-            <FiX
-               
+            <FaGithub color="#eba417" />
+            Github
+            <FiX             
             />
         </button>
     );

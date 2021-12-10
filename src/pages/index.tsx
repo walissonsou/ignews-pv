@@ -26,12 +26,15 @@ export default function Home({ product }:productProps) {
     <span> Ei, seja bem vindo!  </span>
     <h1>A melhor metodologia de exercício que <br/ > <span> você</span> tem direito.</h1>
     <p>
-      Matricule-se e tenha acesso ao melhor  <br /> acompanhamento do <span>Brasil </span>
-     por {product.amount}
+     Conheça nossos <span className={styles.plans}><a href='/consultoria'>planos</a></span> e matricule-se para ter acesso ao melhor acompanhamento do <span>Brasil </span>
+     a partir de {product.amount}.
+    
     </p>
+    <div className={styles.button}>
     <SubscribeButton priceId={product.priceId}/>
+    </div>
   </section>
-  <img src ="/images/logovictor.png" alt="Girl coding" />
+  <img src ="/images/logovictor.png" alt="logo da marca" />
   
 </main>
 

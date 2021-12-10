@@ -1,0 +1,71 @@
+.contentmain {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    
+}
+.h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    color: var(--blue-300);
+    font: 700 1rem "Roboto", sans-serif;
+    font-size: 30px;
+}
+.h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.4rem;
+    color: var(--blue-300);
+    font: 400 rem "Roboto", sans-serif;
+    font-size: 20px;
+
+}
+
+.contentdiv{
+    ul{
+        list-style: none;
+    }
+    float:left;
+    width: 720px;
+    margin: 5rem auto 0;
+    color: red;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    list-style: none;
+    
+}
+.tamanho{
+    width: 300px;
+    height: auto;
+    list-style: none;
+}
+.firstresult{
+    position: absolute;
+    left: 65%;
+    list-style: none;
+}
+.secondresult{
+    position: absolute;
+    left: 40%;
+    list-style: none;
+}
+.thirdresult{
+    position: absolute;
+    left: 40%;
+    bottom: -10rem;
+    list-style: none;
+}
+.fortyresult{
+    position: absolute;
+    left: 65%;
+    bottom: -10rem;
+    list-style: none;
+}
+.sixtyresult{
+    position: absolute;
+    bottom: -10rem;
+    list-style: none;
+}
