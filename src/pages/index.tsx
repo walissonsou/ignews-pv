@@ -3,7 +3,7 @@ import Head from 'next/Head'
 
 
 import { SubscribeButton } from '../components/SingInButton/Subscripet'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { GetStaticProps } from 'next';
 import styles from './home.module.scss'
 import { stripe } from '../services/stripe';

@@ -3,21 +3,13 @@ import styles from './styles.module.scss'
 import { Button } from "reactstrap";
 import React from "react";
 
+
 export default function Sobre() {
     return (
         <main className={styles.contentmain}>
             <h2 className={styles.h2}>Victor Ricarte  </h2>
             <>
-      <Button
-        className="btn-icon-only rounded-circle"
-        color="facebook"
-        type="button"
-      >
-        {" "}
-        <span className="btn-inner--icon">
-          <i className="fab fa-facebook"></i>
-        </span>
-      </Button>
+      
     
     </>
             

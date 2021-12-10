@@ -21,7 +21,7 @@ export function Header() {
                         <a className={asPath === '/sobre' ? styles.active : ' '} >  SOBRE </a>
                     </Link>
                     <Link  href="/consultoria" prefetch>
-                        <a className={asPath === '/consultoria' ? styles.active : ' '}> CONSULTORIA </a>
+                        <a className={asPath === '/consultoria' ? styles.active : ' '}> BLOG </a>
                     </Link>
                     <Link href="/alunos" prefetch>
                         <a className={asPath === '/alunos' ? styles.active : ' '}> ALUNO </a>
